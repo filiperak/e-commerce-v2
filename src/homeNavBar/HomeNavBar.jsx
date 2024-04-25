@@ -1,7 +1,7 @@
 import React from "react";
 import { HomeNavContainer } from "./styled";
 
-const HomeNavBar = () => {
+const HomeNavBar = ({category,setCategory}) => {
   const allCategories = [
     "smartphones",
     "laptops",
@@ -37,13 +37,19 @@ const HomeNavBar = () => {
       urlExtention: "womens-dresses"},
     
   ];
+
+  const handleClick = (name,url) => {
+    setCategory({display:name,url:url})
+  }
   return (
     <HomeNavContainer>
-      <p>HOME</p>
-      <p>HOME</p>
-      <p>HOME</p>
-      <p>HOME</p>
-      <p>HOME</p>
+      {mainCategories.map((elem,index) => (
+        <p
+         key={index}
+         onClick={() => handleClick(elem.displayName,elem.urlExtention)}
+         style={{borderBottom: category.display === elem.displayName? '3px solid #000' :null}}
+         >{elem.displayName}</p>
+      ))}
     </HomeNavContainer>
   );
 };

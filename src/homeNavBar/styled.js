@@ -13,8 +13,5 @@ export const HomeNavContainer = styled.div`
         font-weight: 700;
         font-size: 0.9rem;
     }
-   > p:hover{
-        color: #fff;
-        background-color: var(--main-gray);
-    } 
+   
 `;

@@ -3,14 +3,16 @@ import { ProductsContainer } from "./styled";
 import { api } from "../../services/api";
 import ProductsListItem from "./ProductsListItem";
 
-const ProductList = () => {
+const ProductList = ({categoryUrl}) => {
   const [products, setProducts] = useState([]);
   const [count, setCount] = useState(0);
 
   async function fetchProducts(URL) {
     try {
       const response = await fetch(
-        `${URL}?limit=10&skip=${count === 0 ? 0 : count * 10}`
+       // `https://dummyjson.com/products/${categoryUrl.url}?limit=10&skip=10`
+         `${URL}/category/${categoryUrl.url}?limit=10&skip=${count * 10}`  
+         //https://dummyjson.com/products/category/womens-dresses?limit=10&skip=2
       );
       const result = await response.json();
       if (result && result.products && result.products.length > 0) {
@@ -24,7 +26,8 @@ const ProductList = () => {
   useEffect(() => {
     fetchProducts(api);
 
-  }, [count]);
+  }, [count,categoryUrl]);
+  console.log(categoryUrl.url);
   return (
     <ProductsContainer>
       {products.map((elem) => (
