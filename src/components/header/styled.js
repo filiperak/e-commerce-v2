@@ -11,7 +11,9 @@ export const HeaderContainer = styled.header`
     .MuiSvgIcon-root:hover{
         color: var(--main-orange);
     }
-
+    :first-child{
+        cursor: pointer;
+    }
 `;
 export const SearchBar = styled.div`
     display: flex;
