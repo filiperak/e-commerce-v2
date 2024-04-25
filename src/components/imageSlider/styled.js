@@ -5,10 +5,12 @@ export const ImageContainer = styled.div`
     display: flex;
     justify-content: center;
     align-items: center;
+    height: 200px;
     .current-img{
         width: 100%;
         height: 100%;
     }
+
     .hide-current-img{
         display: none;
     }
@@ -16,6 +18,9 @@ export const ImageContainer = styled.div`
         position: absolute;
         font-size: 2rem;
         opacity: 50%;
+        cursor: pointer;
+        z-index: 100;
+        display: none;
     }
     .arrow-left{
         left: 0;

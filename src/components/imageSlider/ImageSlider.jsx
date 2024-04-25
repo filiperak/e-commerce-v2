@@ -9,7 +9,7 @@ const ImageSlider = ({ imageData }) => {
     setCurrentSlide(currentSlide === imageData.length -1? 0: currentSlide +1)
   }
   const handlePrevious = () => {
-    setCurrentSlide(currentSlide === 0? imageData.length-1 : currentSlide+1)
+    setCurrentSlide(currentSlide === 0? imageData.length-1 : currentSlide - 1)
   }
   return (
     <ImageContainer>

@@ -10,7 +10,7 @@ const ProductList = () => {
   async function fetchProducts(URL) {
     try {
       const response = await fetch(
-        `${URL}?limit=20&skip=${count === 0 ? 0 : count * 20}`
+        `${URL}?limit=10&skip=${count === 0 ? 0 : count * 10}`
       );
       const result = await response.json();
       if (result && result.products && result.products.length > 0) {
@@ -23,6 +23,7 @@ const ProductList = () => {
 
   useEffect(() => {
     fetchProducts(api);
+
   }, [count]);
   return (
     <ProductsContainer>
