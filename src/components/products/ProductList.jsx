@@ -27,7 +27,6 @@ const ProductList = ({categoryUrl}) => {
     fetchProducts(api);
 
   }, [count,categoryUrl]);
-  console.log(categoryUrl.url);
   return (
     <ProductsContainer>
       {products.map((elem) => (
