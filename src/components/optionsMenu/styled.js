@@ -5,16 +5,22 @@ export const OptionsMenuContainer = styled.select`
     font-size: 0.8em;
     font-weight: 600;
     color: #888;
-    display: inline-block;
+    cursor: pointer;
+    display: block;
     border-bottom-left-radius:4px;
     border-top-left-radius:4px;
-    width: auto;
-    flex: 0.15;
     &:focus{
         outline: none;
     }
     option{
         color: #000;
         font-size: 1em;
+        background-color: #fff;
+    }
+    @media(max-width:600px){
+        max-width: 20%;
+        background-color: var(--main-orange);
+        color: #fff;
+
     }
 `;
