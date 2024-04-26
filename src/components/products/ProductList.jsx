@@ -1,20 +1,27 @@
-import React, { useEffect, useState } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import { ProductsContainer } from "./styled";
 import { api } from "../../services/api";
 import ProductsListItem from "./ProductsListItem";
+import { CategoryContext } from "../../context/CategoryContext";
+
 
 const ProductList = () => {
   const [products, setProducts] = useState([]);
-  const [count, setCount] = useState(0);
-
+  const {categoryState,categoryDispatch} = useContext(CategoryContext)
+  console.log(typeof(categoryState),categoryState.category);
   async function fetchProducts(URL) {
     try {
-      const response = await fetch(
-        `${URL}?limit=10&skip=${count === 0 ? 0 : count * 10}`
-      );
+      let apiUrl = URL;
+      if(categoryState.category !== ''){
+        apiUrl += `/category/${categoryState.category}`
+      }else{
+        apiUrl += `?limit=100`
+
+      }
+      const response = await fetch(apiUrl);
       const result = await response.json();
       if (result && result.products && result.products.length > 0) {
-        setProducts((prevState) => [...prevState, ...result.products]);
+        setProducts(result.products);
       }
     } catch (e) {
       console.log(e);
@@ -24,13 +31,16 @@ const ProductList = () => {
   useEffect(() => {
     fetchProducts(api);
 
-  }, [count]);
+  }, [categoryState]);
+
+  useEffect(() => {
+    console.log(categoryState.category);
+  }, [categoryState.category]);
   return (
     <ProductsContainer>
       {products.map((elem) => (
         <ProductsListItem key={elem.id} data={elem} />
       ))}
-      <button onClick={() => setCount(count + 1)}>Load more Products</button>
     </ProductsContainer>
   );
 };
