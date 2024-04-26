@@ -1,22 +1,21 @@
 import React, { useContext, useEffect, useState } from "react";
-import { ProductsContainer } from "./styled";
+import { ProductsListContainer, ProductsContainer } from "./styled";
 import { api } from "../../services/api";
 import ProductsListItem from "./ProductsListItem";
 import { CategoryContext } from "../../context/CategoryContext";
+import Sort from "./Sort";
 
-
-const ProductList = () => {
+const ProductList = ({handleNmOfProducts}) => {
   const [products, setProducts] = useState([]);
-  const {categoryState,categoryDispatch} = useContext(CategoryContext)
-  console.log(typeof(categoryState),categoryState.category);
+  const { categoryState, categoryDispatch } = useContext(CategoryContext);
+  console.log(typeof categoryState, categoryState.category);
   async function fetchProducts(URL) {
     try {
       let apiUrl = URL;
-      if(categoryState.category !== ''){
-        apiUrl += `/category/${categoryState.category}`
-      }else{
-        apiUrl += `?limit=100`
-
+      if (categoryState.category !== "") {
+        apiUrl += `/category/${categoryState.category}`;
+      } else {
+        apiUrl += `?limit=100`;
       }
       const response = await fetch(apiUrl);
       const result = await response.json();
@@ -30,17 +29,18 @@ const ProductList = () => {
 
   useEffect(() => {
     fetchProducts(api);
-
   }, [categoryState]);
 
   useEffect(() => {
-    console.log(categoryState.category);
-  }, [categoryState.category]);
+    handleNmOfProducts(products.length)
+  }, [products]);
   return (
     <ProductsContainer>
-      {products.map((elem) => (
-        <ProductsListItem key={elem.id} data={elem} />
-      ))}
+      <ProductsListContainer>
+        {products.map((elem) => (
+          <ProductsListItem key={elem.id} data={elem} />
+        ))}
+      </ProductsListContainer>
     </ProductsContainer>
   );
 };
