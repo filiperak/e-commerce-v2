@@ -5,6 +5,7 @@ import ShoppingCartIcon from "@mui/icons-material/ShoppingCart";
 import SearchIcon from "@mui/icons-material/Search";
 import PersonOutlineIcon from "@mui/icons-material/PersonOutline";
 import { useNavigate } from "react-router-dom";
+import OptionsMenu from "../optionsMenu/OptinosMenu";
 
 const Header = () => {
   const navigate = useNavigate();
@@ -12,6 +13,7 @@ const Header = () => {
     <HeaderContainer>
       <Arrow onClick={() => navigate("/")} />
       <SearchBar>
+        <OptionsMenu/>
         <input type="text" placeholder="Search products..." />
         <SearchIcon />
       </SearchBar>

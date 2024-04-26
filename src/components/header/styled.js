@@ -24,7 +24,7 @@ export const SearchBar = styled.div`
     display: flex;
     border-radius: 4px;
     background-color: #fff;
-    padding: 2px;
+    overflow: hidden;
     flex: 0.7;
     >input{
         border: none;
@@ -32,6 +32,9 @@ export const SearchBar = styled.div`
     }
     >input:focus{
         outline: none;
+    }
+    .MuiSvgIcon-root{
+        margin: 2px;
     }
 `;
 export const HeaderRigth = styled.div`

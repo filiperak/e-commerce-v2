@@ -1,12 +1,11 @@
 import React from 'react'
 import { HomeContainer } from './styled'
 import ProductList from '../../products/ProductList'
-import HomeNavBar from '../../../homeNavBar/HomeNavBar'
+import OptionsMenu from '../../optionsMenu/OptinosMenu'
 
 const Home = () => {
   return (
     <HomeContainer>
-        <HomeNavBar/>
         <ProductList/>
     </HomeContainer>
   )
