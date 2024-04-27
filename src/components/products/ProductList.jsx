@@ -5,10 +5,11 @@ import ProductsListItem from "./ProductsListItem";
 import { CategoryContext } from "../../context/CategoryContext";
 import Sort from "./Sort";
 
-const ProductList = ({handleNmOfProducts}) => {
+const ProductList = ({handleNmOfProducts,searchInput}) => {
   const [products, setProducts] = useState([]);
-  const { categoryState, categoryDispatch } = useContext(CategoryContext);
-  console.log(typeof categoryState, categoryState.category);
+  const [filterdProducts,setFilterdProducts] = useState([]);
+  const [searchParam,setSearchParam] = useState([])
+  const { categoryState } = useContext(CategoryContext);
   async function fetchProducts(URL) {
     try {
       let apiUrl = URL;
@@ -34,9 +35,29 @@ const ProductList = ({handleNmOfProducts}) => {
   useEffect(() => {
     handleNmOfProducts(products.length)
   }, [products]);
+
+
+  const filterProductsFunction = () => {
+    const query = searchInput.toLowerCase();
+    setSearchParam(query)
+    const filterdData = products.filter((elem) => elem.title.toLowerCase().indexOf(query) > -1)
+    setFilterdProducts(filterdData)
+    console.log(filterdProducts);
+    //setProducts(filterdProducts)
+  }
+
+
+
+
+  useEffect(() => {
+    filterProductsFunction()
+  },[searchInput])
   return (
     <ProductsContainer>
       <ProductsListContainer>
+        {/* {filterdProducts.map((elem) => (
+          <ProductsListItem key={elem.id} data={elem} />
+        ))} */}
         {products.map((elem) => (
           <ProductsListItem key={elem.id} data={elem} />
         ))}

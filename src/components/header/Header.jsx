@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import { ReactComponent as Arrow } from "../../assets/arrow.svg";
 import { HeaderContainer, HeaderRigth, SearchBar } from "./styled";
 import ShoppingCartIcon from "@mui/icons-material/ShoppingCart";
@@ -7,14 +7,21 @@ import PersonOutlineIcon from "@mui/icons-material/PersonOutline";
 import { useNavigate } from "react-router-dom";
 import OptionsMenu from "../optionsMenu/OptinosMenu";
 
-const Header = () => {
+const Header = ({ handleInput }) => {
   const navigate = useNavigate();
+  const [inputVal, setInputVal] = useState("");
+  handleInput(inputVal);
   return (
     <HeaderContainer>
       <Arrow onClick={() => navigate("/")} />
       <SearchBar>
-        <OptionsMenu/>
-        <input type="text" placeholder="Search products..." />
+        <OptionsMenu />
+        <input
+          type="text"
+          placeholder="Search products..."
+          value={inputVal}
+          onChange={(e) => setInputVal(e.target.value)}
+        />
         <SearchIcon />
       </SearchBar>
       <HeaderRigth>
