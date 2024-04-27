@@ -24,7 +24,7 @@ export const SearchBar = styled.div`
     display: flex;
     border-radius: 4px;
     background-color: #fff;
-    overflow: hidden;
+    position: relative;
     flex: 0.7;
     >input{
         border: none;
@@ -45,5 +45,31 @@ export const HeaderRigth = styled.div`
     margin-right: 2%;
     > .MuiSvgIcon-root:first-child{
         margin-right: auto;
+    }
+`;
+export const Recommended = styled.ul`
+    position: absolute;
+    z-index: 200;
+    background-color: #fff;
+    height: auto;
+    top: 13px;
+    left: 133px;
+    right: 25px;
+    list-style: none;
+    padding: 0;
+    border-radius: 0  0 4px  4px;
+    overflow-y: scroll;
+    max-height: 50vh;
+    &::-webkit-scrollbar {
+        display: none;
+    }
+    >li{
+        padding: 3px;
+        margin: 2px;
+        cursor: pointer;
+    }
+    >li:hover{
+        background-color: var(--main-gray);
+        border-radius: 4px;
     }
 `;

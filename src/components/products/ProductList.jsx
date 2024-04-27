@@ -3,9 +3,8 @@ import { ProductsListContainer, ProductsContainer } from "./styled";
 import { api } from "../../services/api";
 import ProductsListItem from "./ProductsListItem";
 import { CategoryContext } from "../../context/CategoryContext";
-import Sort from "./Sort";
 
-const ProductList = ({handleNmOfProducts,searchInput}) => {
+const ProductList = ({handleNmOfProducts,searchInput,setProductItems}) => {
   const [products, setProducts] = useState([]);
   const [filterdProducts,setFilterdProducts] = useState([]);
   const [searchParam,setSearchParam] = useState([])
@@ -22,6 +21,7 @@ const ProductList = ({handleNmOfProducts,searchInput}) => {
       const result = await response.json();
       if (result && result.products && result.products.length > 0) {
         setProducts(result.products);
+        setProductItems(result.products);
       }
     } catch (e) {
       console.log(e);
@@ -43,7 +43,6 @@ const ProductList = ({handleNmOfProducts,searchInput}) => {
     const filterdData = products.filter((elem) => elem.title.toLowerCase().indexOf(query) > -1)
     setFilterdProducts(filterdData)
     console.log(filterdProducts);
-    //setProducts(filterdProducts)
   }
 
 

@@ -1,16 +1,31 @@
 import React, { useEffect, useState } from "react";
 import { ReactComponent as Arrow } from "../../assets/arrow.svg";
-import { HeaderContainer, HeaderRigth, SearchBar } from "./styled";
+import { HeaderContainer, HeaderRigth, Recommended, SearchBar } from "./styled";
 import ShoppingCartIcon from "@mui/icons-material/ShoppingCart";
 import SearchIcon from "@mui/icons-material/Search";
 import PersonOutlineIcon from "@mui/icons-material/PersonOutline";
 import { useNavigate } from "react-router-dom";
 import OptionsMenu from "../optionsMenu/OptinosMenu";
 
-const Header = ({ handleInput }) => {
+const Header = ({ handleInput, productItems }) => {
   const navigate = useNavigate();
+  const [filterdProducts, setFilterdProducts] = useState([]);
+  const [searchParam, setSearchParam] = useState([]);
   const [inputVal, setInputVal] = useState("");
   handleInput(inputVal);
+
+  useEffect(() => {
+    filterProductsFunction();
+  }, [inputVal]);
+  const filterProductsFunction = () => {
+    const query = inputVal.toLowerCase();
+    setSearchParam(query);
+    const filterdData = productItems.filter(
+      (elem) => elem.title.toLowerCase().indexOf(query) > -1
+    );
+    setFilterdProducts(filterdData);
+    console.log(filterdProducts);
+  };
   return (
     <HeaderContainer>
       <Arrow onClick={() => navigate("/")} />
@@ -20,8 +35,16 @@ const Header = ({ handleInput }) => {
           type="text"
           placeholder="Search products..."
           value={inputVal}
-          onChange={(e) => setInputVal(e.target.value)}
+          onChange={(e) => {
+            setInputVal(e.target.value);
+          }}
         />
+        <Recommended>
+          {filterdProducts.length && inputVal.length > 1 ?  
+          filterdProducts.map((elem) => (
+            <li>{elem.title}</li>
+          )):null}
+        </Recommended>
         <SearchIcon />
       </SearchBar>
       <HeaderRigth>

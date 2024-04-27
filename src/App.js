@@ -8,16 +8,15 @@ import { useState } from "react";
 
 function App() {
   const [searchInput,setSearchInput] = useState('')
+  const [productItems,setProductItems] = useState([])
   return (
     <div className="App">
       <Router>
         <CategoryContextProvider>
-          <Header handleInput={setSearchInput}/>
-          <p style={{marginTop:'100px'}}>{searchInput}test</p>
-
+          <Header handleInput={setSearchInput} productItems={productItems}/>
           <Routes>
             <Route path="/cart" element={<Cart />} />
-            <Route path="/" element={<Home searchInput={searchInput}/>} />
+            <Route path="/" element={<Home searchInput={searchInput}setProductItems={setProductItems}/>} />
           </Routes>
         </CategoryContextProvider>
       </Router>
