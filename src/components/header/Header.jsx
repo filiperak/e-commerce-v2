@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import { ReactComponent as Arrow } from "../../assets/arrow.svg";
 import { HeaderContainer, HeaderRigth, Recommended, SearchBar } from "./styled";
 import ShoppingCartIcon from "@mui/icons-material/ShoppingCart";
@@ -12,11 +12,13 @@ const Header = ({ handleInput, productItems }) => {
   const [filterdProducts, setFilterdProducts] = useState([]);
   const [searchParam, setSearchParam] = useState([]);
   const [inputVal, setInputVal] = useState("");
+
   handleInput(inputVal);
 
   useEffect(() => {
     filterProductsFunction();
   }, [inputVal]);
+
   const filterProductsFunction = () => {
     const query = inputVal.toLowerCase();
     setSearchParam(query);
@@ -26,6 +28,8 @@ const Header = ({ handleInput, productItems }) => {
     setFilterdProducts(filterdData);
     console.log(filterdProducts);
   };
+
+    const inpRef = useRef(null)
   return (
     <HeaderContainer>
       <Arrow onClick={() => navigate("/")} />
@@ -38,12 +42,12 @@ const Header = ({ handleInput, productItems }) => {
           onChange={(e) => {
             setInputVal(e.target.value);
           }}
+          onClick={() => inpRef.current?.blur()}
         />
         <Recommended>
-          {filterdProducts.length && inputVal.length > 1 ?  
-          filterdProducts.map((elem) => (
-            <li>{elem.title}</li>
-          )):null}
+          {filterdProducts.length && inputVal.length > 1
+            ? filterdProducts.map((elem) => <li>{elem.title}</li>)
+            : null}
         </Recommended>
         <SearchIcon />
       </SearchBar>
