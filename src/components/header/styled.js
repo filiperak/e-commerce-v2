@@ -19,6 +19,7 @@ export const HeaderContainer = styled.header`
     >svg{
         cursor: pointer;
     }
+
 `;
 export const SearchBar = styled.div`
     display: flex;
@@ -32,6 +33,7 @@ export const SearchBar = styled.div`
     }
     >input:focus{
         outline: none;
+        box-shadow: 0 0 10px 1000px rgba(0,0,0,0.5);
     }
     .MuiSvgIcon-root{
         margin: 2px;
@@ -54,7 +56,7 @@ export const Recommended = styled.ul`
     height: auto;
     top: 13px;
     left: 133px;
-    right: 25px;
+    right: 28px;
     list-style: none;
     padding: 0;
     border-radius: 0  0 4px  4px;

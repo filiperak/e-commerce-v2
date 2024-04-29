@@ -12,6 +12,7 @@ const Header = ({ handleInput, productItems }) => {
   const [filterdProducts, setFilterdProducts] = useState([]);
   const [searchParam, setSearchParam] = useState([]);
   const [inputVal, setInputVal] = useState("");
+  const [isFocused, setIsFocused] = useState(false);
 
   handleInput(inputVal);
 
@@ -29,7 +30,7 @@ const Header = ({ handleInput, productItems }) => {
     console.log(filterdProducts);
   };
 
-    const inpRef = useRef(null)
+  const inpRef = useRef(null);
   return (
     <HeaderContainer>
       <Arrow onClick={() => navigate("/")} />
@@ -42,10 +43,12 @@ const Header = ({ handleInput, productItems }) => {
           onChange={(e) => {
             setInputVal(e.target.value);
           }}
-          onClick={() => inpRef.current?.blur()}
+          onFocus={() => setIsFocused(true)}
+          onBlur={() => setIsFocused(false)}
+          ref={inpRef}
         />
         <Recommended>
-          {filterdProducts.length && inputVal.length > 1
+          {isFocused && filterdProducts.length && inputVal.length > 1
             ? filterdProducts.map((elem) => <li>{elem.title}</li>)
             : null}
         </Recommended>
