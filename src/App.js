@@ -5,18 +5,28 @@ import Home from "./components/views/home/Home";
 import Cart from "./components/views/cart/Cart";
 import { CategoryContextProvider } from "./context/CategoryContext";
 import { useState } from "react";
+import SingleProduct from "./components/views/singleProduct/SingleProduct";
 
 function App() {
-  const [searchInput,setSearchInput] = useState('')
-  const [productItems,setProductItems] = useState([])
+  const [searchInput, setSearchInput] = useState("");
+  const [productItems, setProductItems] = useState([]);
   return (
     <div className="App">
       <Router>
         <CategoryContextProvider>
-          <Header handleInput={setSearchInput} productItems={productItems}/>
+          <Header handleInput={setSearchInput} productItems={productItems} />
           <Routes>
             <Route path="/cart" element={<Cart />} />
-            <Route path="/" element={<Home searchInput={searchInput}setProductItems={setProductItems}/>} />
+            <Route
+              path="/"
+              element={
+                <Home
+                  searchInput={searchInput}
+                  setProductItems={setProductItems}
+                />
+              }
+            />
+            <Route path="/product/:productId" element={<SingleProduct/>}/>
           </Routes>
         </CategoryContextProvider>
       </Router>

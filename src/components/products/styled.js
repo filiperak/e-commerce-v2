@@ -5,6 +5,10 @@ export const ProductsListContainer = styled.div`
   flex-wrap: wrap;
   justify-content: space-evenly;
   gap: 20px;
+  a{
+    text-decoration: none;
+    color: #000;
+  }
 `;
 export const ProductsContainer = styled.div`
   margin-left: auto;

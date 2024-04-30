@@ -1,9 +1,11 @@
 import React from 'react'
 import { ProductsListItemContainer,ProductListItemInfo } from './styled'
 import ImageSlider from '../imageSlider/ImageSlider'
+import { Link } from 'react-router-dom'
 
 const ProductsListItem = ({data}) => {
   return (
+    <Link to={`/product/${data.id}`}>
    <ProductsListItemContainer>
         <ImageSlider imageData={data.images}/>
         <ProductListItemInfo>
@@ -14,6 +16,7 @@ const ProductsListItem = ({data}) => {
           <span>{data.brand}</span>
         </ProductListItemInfo>
    </ProductsListItemContainer>
+   </Link>
   )
 }
 

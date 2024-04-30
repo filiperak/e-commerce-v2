@@ -14,7 +14,7 @@ const Header = ({ handleInput, productItems }) => {
   const [inputVal, setInputVal] = useState("");
   const [isFocused, setIsFocused] = useState(false);
 
-  handleInput(inputVal);
+  //handleInput(inputVal);    OBRATI PAZNJU STA SE OVDE DESILO
 
   useEffect(() => {
     filterProductsFunction();
