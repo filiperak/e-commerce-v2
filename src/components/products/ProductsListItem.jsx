@@ -5,8 +5,9 @@ import { Link } from 'react-router-dom'
 
 const ProductsListItem = ({data}) => {
   return (
-    <Link to={`/product/${data.id}`}>
    <ProductsListItemContainer>
+        <Link to={`/product/${data.id}`}>
+
         <ImageSlider imageData={data.images}/>
         <ProductListItemInfo>
           <div>
@@ -15,8 +16,9 @@ const ProductsListItem = ({data}) => {
           </div>
           <span>{data.brand}</span>
         </ProductListItemInfo>
+        </Link>
+
    </ProductsListItemContainer>
-   </Link>
   )
 }
 

@@ -8,6 +8,7 @@ export const ProductsListContainer = styled.div`
   a{
     text-decoration: none;
     color: #000;
+    display: block;
   }
 `;
 export const ProductsContainer = styled.div`
@@ -24,12 +25,20 @@ export const ProductsListItemContainer = styled.div`
   display: flex;
   flex-direction: column;
   justify-content: space-between;
-  @media (max-width: 550px) {
+  @media (max-width: 600px) {
     width: 45%;
     margin-left: 1%;
     margin-right: 1%;
   }
+  @media (max-width: 375px) {
+      width: 98%;
+    margin-left: 1%;
+    margin-right: 1%;
+  
+  }
 `;
+
+
 export const ProductListItemInfo = styled.div`
   flex: 0.5;
   padding: 3%;
