@@ -27,14 +27,19 @@ const Header = ({ handleInput, productItems }) => {
       (elem) => elem.title.toLowerCase().indexOf(query) > -1
     );
     setFilterdProducts(filterdData);
-    console.log(filterdProducts);
+    //console.log(filterdProducts);
+    console.log(inputVal);
   };
 
   const inpRef = useRef(null);
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    handleInput(inputVal); 
+  }
   return (
     <HeaderContainer>
       <Arrow onClick={() => navigate("/")} />
-      <SearchBar>
+      <SearchBar onSubmit={handleSubmit}>
         <OptionsMenu />
         <input
           type="text"
@@ -49,7 +54,9 @@ const Header = ({ handleInput, productItems }) => {
         />
         <Recommended>
           {isFocused && filterdProducts.length && inputVal.length > 1
-            ? filterdProducts.map((elem) => <li>{elem.title}</li>)
+            ? filterdProducts.map((elem, ind) => (
+                <li key={ind}>{elem.title}</li>
+              ))
             : null}
         </Recommended>
         <SearchIcon />

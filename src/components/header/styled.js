@@ -21,7 +21,7 @@ export const HeaderContainer = styled.header`
     }
 
 `;
-export const SearchBar = styled.div`
+export const SearchBar = styled.form`
     display: flex;
     border-radius: 4px;
     background-color: #fff;

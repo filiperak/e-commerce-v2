@@ -43,6 +43,7 @@ const ProductList = ({handleNmOfProducts,searchInput,setProductItems}) => {
     const filterdData = products.filter((elem) => elem.title.toLowerCase().indexOf(query) > -1)
     setFilterdProducts(filterdData)
     console.log(filterdProducts);
+    setProducts(filterdProducts)
   }
 
 
