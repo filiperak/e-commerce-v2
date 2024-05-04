@@ -5,10 +5,13 @@ export const ImageContainer = styled.div`
     display: flex;
     justify-content: center;
     align-items: center;
-    height: 200px;
+    height: 100%;
+    width:50%;
+    top: 0;
     .current-img{
         width: 100%;
         height: 100%;
+        object-fit: scale-down;
     }
 
     .hide-current-img{
@@ -20,7 +23,6 @@ export const ImageContainer = styled.div`
         opacity: 50%;
         cursor: pointer;
         z-index: 100;
-        
     }
     .arrow-left{
         left: 0;
@@ -28,6 +30,13 @@ export const ImageContainer = styled.div`
     .arrow-rigth{
         right: 0;
     }
+    &:hover .arrow{
+        opacity: 100%;
+    }
+    @media (max-width: 600px) {
+        width: 100%;
+    }
+
 `;
 export const Indicators = styled.span`
     display: flex;
@@ -35,14 +44,14 @@ export const Indicators = styled.span`
     bottom: 2%;
     .current-indicator{
         background-color: #000;
+        border: 3px solid var(--main-orange);
     }
 `;
-export const SingleIndicator = styled.button`
-    border-radius: 50%;
-    height: 15px;
-    width: 15px;
+export const SingleIndicator = styled.img`
+    border-radius: 4px;
+    height: 60px;
+    width: 60px;
     margin: 0 0.2rem;
     border: none;
     cursor: pointer;
-   opacity: 60%;
 `;

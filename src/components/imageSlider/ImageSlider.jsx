@@ -33,9 +33,10 @@ const ImageSlider = ({ imageData }) => {
        className="arrow arrow-rigth"/>
       <Indicators>
         {imageData && imageData.length
-          ? imageData.map((_, index) => (
+          ? imageData.map((elem, index) => (
               <SingleIndicator
                 key={index}
+                src={elem}
                 className={
                   currentSlide === index
                     ? "current-indicator"
