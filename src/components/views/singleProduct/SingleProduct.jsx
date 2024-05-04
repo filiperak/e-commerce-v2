@@ -2,17 +2,19 @@ import React, { useState } from "react";
 import { useParams } from "react-router-dom";
 import { api } from "../../../services/api";
 import {
+  AddToCart,
   PriceAndRating,
   SingleProductContainer,
   SingleProductData,
 } from "./styled";
 import ImageSlider from "../../imageSlider/ImageSlider";
-import SingleProductImages from "./SingleProductImages";
 import StarRatings from "react-star-ratings";
 
 const SingleProduct = () => {
   const { productId } = useParams();
   const [singleProduct, setSingleProduct] = useState([]);
+  const [cartCount,setCartCount] = useState(0)
+
   async function fetchSingleProduct() {
     try {
       const response = await fetch(`${api}/${productId}`);
@@ -50,8 +52,13 @@ const SingleProduct = () => {
         </PriceAndRating>
         <h5>Description</h5>
         <p>{singleProduct.description}</p>
+        <AddToCart>
+          <span onClick={() => cartCount !== 0? setCartCount(cartCount-1) : null}>-</span>
+          <span>{cartCount}</span>
+          <span onClick={() => setCartCount(cartCount + 1)}>+</span>
 
-        <button>Add to cart</button>
+          <button>Add to cart</button>
+        </AddToCart>
       </SingleProductData>
     </SingleProductContainer>
   );
