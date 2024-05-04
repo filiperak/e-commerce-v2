@@ -6,7 +6,6 @@ import { CategoryContext } from "../../context/CategoryContext";
 
 const ProductList = ({handleNmOfProducts,searchInput,setProductItems}) => {
   const [products, setProducts] = useState([]);
-  const [filterdProducts,setFilterdProducts] = useState([]);
   const [searchParam,setSearchParam] = useState([])
   const { categoryState } = useContext(CategoryContext);
   async function fetchProducts(URL) {
@@ -35,29 +34,13 @@ const ProductList = ({handleNmOfProducts,searchInput,setProductItems}) => {
   useEffect(() => {
     handleNmOfProducts(products.length)
   }, [products]);
-
-
-  const filterProductsFunction = () => {
-    const query = searchInput.toLowerCase();
-    setSearchParam(query)
-    const filterdData = products.filter((elem) => elem.title.toLowerCase().indexOf(query) > -1)
-    setFilterdProducts(filterdData)
-    console.log(filterdProducts);
-    setProducts(filterdProducts)
-  }
-
-
-
-
   useEffect(() => {
-    filterProductsFunction()
+    setProducts(searchInput)
   },[searchInput])
+
   return (
     <ProductsContainer>
       <ProductsListContainer>
-        {/* {filterdProducts.map((elem) => (
-          <ProductsListItem key={elem.id} data={elem} />
-        ))} */}
         {products.map((elem) => (
           <ProductsListItem key={elem.id} data={elem} />
         ))}

@@ -8,7 +8,7 @@ import { useState } from "react";
 import SingleProduct from "./components/views/singleProduct/SingleProduct";
 
 function App() {
-  const [searchInput, setSearchInput] = useState("");
+  const [searchInput, setSearchInput] = useState([]);
   const [productItems, setProductItems] = useState([]);
   return (
     <div className="App">

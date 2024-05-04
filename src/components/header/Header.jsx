@@ -27,15 +27,16 @@ const Header = ({ handleInput, productItems }) => {
       (elem) => elem.title.toLowerCase().indexOf(query) > -1
     );
     setFilterdProducts(filterdData);
-    //console.log(filterdProducts);
-    console.log(inputVal);
   };
 
   const inpRef = useRef(null);
   const handleSubmit = (e) => {
     e.preventDefault();
-    handleInput(inputVal); 
+    handleInput(filterdProducts);
+    setIsFocused(false);
+    inpRef.current.blur(); 
   }
+
   return (
     <HeaderContainer>
       <Arrow onClick={() => navigate("/")} />
@@ -55,11 +56,22 @@ const Header = ({ handleInput, productItems }) => {
         <Recommended>
           {isFocused && filterdProducts.length && inputVal.length > 1
             ? filterdProducts.map((elem, ind) => (
-                <li key={ind}>{elem.title}</li>
+                <li
+                  key={ind}
+                  onMouseDown={(e) => {
+                    e.preventDefault();
+                    setInputVal(elem.title);
+                  }}
+                  onMouseUp={() => {
+                    setIsFocused(false)
+                  }}
+                >
+                  {elem.title}
+                </li>
               ))
             : null}
         </Recommended>
-        <SearchIcon />
+        <SearchIcon onClick={handleSubmit}/>
       </SearchBar>
       <HeaderRigth>
         <PersonOutlineIcon />
