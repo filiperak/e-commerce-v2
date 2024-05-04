@@ -10,6 +10,7 @@ import ImageSlider from "../../imageSlider/ImageSlider";
 import SingleProductImages from "./SingleProductImages";
 import StarRatings from "react-star-ratings";
 
+
 const SingleProduct = () => {
   const { productId } = useParams();
   const [singleProduct, setSingleProduct] = useState([]);
@@ -30,7 +31,9 @@ const SingleProduct = () => {
   }, []);
   return (
     <SingleProductContainer>
-      <SingleProductImages images={singleProduct.images} />
+      {/* <SingleProductImages images={singleProduct.images} /> */}
+<ImageSlider imageData={singleProduct.images}/>
+
       <SingleProductData>
         <h3>{singleProduct.title}</h3>
         <span>{singleProduct.brand}</span>

@@ -20,7 +20,7 @@ export const ImageContainer = styled.div`
         opacity: 50%;
         cursor: pointer;
         z-index: 100;
-        display: none;
+        
     }
     .arrow-left{
         left: 0;

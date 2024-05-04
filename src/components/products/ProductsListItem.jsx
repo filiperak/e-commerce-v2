@@ -7,8 +7,7 @@ const ProductsListItem = ({data}) => {
   return (
    <ProductsListItemContainer>
         <Link to={`/product/${data.id}`}>
-
-        <ImageSlider imageData={data.images}/>
+        <img src={data.thumbnail} alt={data.title} />
         <ProductListItemInfo>
           <div>
             <p>{data.title}</p>

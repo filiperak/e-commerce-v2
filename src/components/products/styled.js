@@ -25,16 +25,30 @@ export const ProductsListItemContainer = styled.div`
   display: flex;
   flex-direction: column;
   justify-content: space-between;
+  height: 350px;
+  >a{
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    height: 100%;
+  }
+  img{
+    width: 100%;
+    object-fit: cover;
+    height: 60%;
+  }
   @media (max-width: 600px) {
     width: 45%;
     margin-left: 1%;
     margin-right: 1%;
+    height: auto;
   }
   @media (max-width: 375px) {
       width: 98%;
     margin-left: 1%;
     margin-right: 1%;
-  
+    height: auto;
+
   }
 `;
 
