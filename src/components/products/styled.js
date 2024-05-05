@@ -94,6 +94,7 @@ export const SortSelect = styled.div`
     font-weight: 600;
     text-align: center;
     display: block;
+    outline: none;
     > option {
       background-color: #fff;
     }
@@ -110,7 +111,15 @@ export const ProductNavbar = styled.nav`
   margin-top: var(--main-component-margin);
   height: 23.6px;
   align-items: center;
+  >.MuiSvgIcon-root{
+    cursor: pointer;
+  }
 `;
 export const NavLinks = styled.nav`
-
+  color: #777;
+  font-size: 0.8rem;
+  >span{
+    cursor: pointer;
+    margin: 0 3px;
+  }
 `;

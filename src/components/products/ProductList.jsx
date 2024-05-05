@@ -4,10 +4,16 @@ import { api } from "../../services/api";
 import ProductsListItem from "./ProductsListItem";
 import { CategoryContext } from "../../context/CategoryContext";
 
-const ProductList = ({handleNmOfProducts,searchInput,setProductItems}) => {
+const ProductList = ({
+  handleNmOfProducts,
+  searchInput,
+  setProductItems,
+  sortVal,
+}) => {
   const [products, setProducts] = useState([]);
-  const [searchParam,setSearchParam] = useState([])
+  const [searchParam, setSearchParam] = useState([]);
   const { categoryState } = useContext(CategoryContext);
+
   async function fetchProducts(URL) {
     try {
       let apiUrl = URL;
@@ -27,20 +33,40 @@ const ProductList = ({handleNmOfProducts,searchInput,setProductItems}) => {
     }
   }
 
+
   useEffect(() => {
     fetchProducts(api);
   }, [categoryState]);
 
   useEffect(() => {
-    handleNmOfProducts(products.length)
+    handleNmOfProducts(products.length);
   }, [products]);
-  useEffect(() => {
-    setProducts(searchInput)
-  },[searchInput])
 
+  useEffect(() => {
+    setProducts(searchInput);
+  }, [searchInput]);
+
+  useEffect(() => {
+    // switch (sortVal) {
+    //   case 'PRICE_LOW_TO_HIGH':
+    //     console.log(1);
+    //   case 'PRICE_HIGH_TO_LOW':
+    //     console.log(2);
+    //   case 'RATING_LOW_TO_HIGH':
+    //     console.log(3);
+    //   case 'RATING_HIGH_TO_LOW':
+    //     console.log(4);
+    
+    //   default:
+    //     break;
+    // }
+    console.log(sortVal);
+  },[sortVal])
   return (
     <ProductsContainer>
       <ProductsListContainer>
+      <p>{sortVal}</p>
+
         {products.map((elem) => (
           <ProductsListItem key={elem.id} data={elem} />
         ))}
