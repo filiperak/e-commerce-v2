@@ -5,7 +5,7 @@ export const ProductsListContainer = styled.div`
   flex-wrap: wrap;
   justify-content: space-evenly;
   gap: 20px;
-  a{
+  a {
     text-decoration: none;
     color: #000;
     display: block;
@@ -26,13 +26,13 @@ export const ProductsListItemContainer = styled.div`
   flex-direction: column;
   justify-content: space-between;
   height: 350px;
-  >a{
+  > a {
     display: flex;
     flex-direction: column;
     justify-content: space-between;
     height: 100%;
   }
-  img{
+  img {
     width: 100%;
     object-fit: cover;
     height: 60%;
@@ -44,14 +44,12 @@ export const ProductsListItemContainer = styled.div`
     height: auto;
   }
   @media (max-width: 375px) {
-      width: 98%;
+    width: 98%;
     margin-left: 1%;
     margin-right: 1%;
     height: auto;
-
   }
 `;
-
 
 export const ProductListItemInfo = styled.div`
   flex: 0.5;
@@ -68,30 +66,51 @@ export const ProductListItemInfo = styled.div`
   }
 `;
 export const SortBar = styled.div`
-  border-bottom: 2px solid var(--main-gray);
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
   display: flex;
   justify-content: space-between;
   align-items: center;
-  padding: 0 3%;
-  >p{
+  padding: 3px 3%;
+  margin-bottom: 8px;
+  > p {
     font-size: 0.8em;
     font-weight: 500;
+    margin: 0;
+    padding: 0;
   }
 `;
 export const SortSelect = styled.div`
-display: flex;
-border-radius: 15px;
-background-color: var(--main-gray);
-font-size: 0.7em;
-align-items: center;
-padding: 1px 3px;
+  display: flex;
+  border-radius: 4px;
+  background-color: var(--main-gray);
+  font-size: 0.7em;
+  align-items: center;
+  padding: 0 3px;
 
->select{
+  > select {
     height: fit-content;
     border: none;
     background-color: var(--main-gray);
     font-weight: 600;
     text-align: center;
     display: block;
-}
+    > option {
+      background-color: #fff;
+    }
+  }
+
+  > p {
+    margin: 5px 0;
+  }
+`;
+export const ProductNavbar = styled.nav`
+  display: flex;
+  padding: 3px 0 3px 20px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  margin-top: var(--main-component-margin);
+  height: 23.6px;
+  align-items: center;
+`;
+export const NavLinks = styled.nav`
+
 `;

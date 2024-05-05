@@ -9,6 +9,8 @@ import {
 } from "./styled";
 import ImageSlider from "../../imageSlider/ImageSlider";
 import StarRatings from "react-star-ratings";
+import ProductNav from "../../products/ProductNav";
+
 
 const SingleProduct = () => {
   const { productId } = useParams();
@@ -30,7 +32,9 @@ const SingleProduct = () => {
   useState(() => {
     fetchSingleProduct();
   }, []);
-  return (
+  return (<>
+        <ProductNav/>
+
     <SingleProductContainer>
       <ImageSlider imageData={singleProduct.images} />
       <SingleProductData>
@@ -61,6 +65,7 @@ const SingleProduct = () => {
         </AddToCart>
       </SingleProductData>
     </SingleProductContainer>
+    </>
   );
 };
 

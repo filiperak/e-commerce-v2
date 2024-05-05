@@ -1,7 +1,7 @@
 import styled from "styled-components";
 
 export const SingleProductContainer = styled.div`
-  margin-top: var(--main-component-margin);
+  /* margin-top: var(--main-component-margin); */
   display: flex;
   max-width: 1100px;
   margin-left: auto;
