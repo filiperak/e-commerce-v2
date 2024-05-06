@@ -5,7 +5,7 @@ import Sort from "../../products/Sort";
 
 const Home = ({ searchInput, setProductItems }) => {
   const [numOfProducts, setNumOfProducts] = useState(0);
-  const [sortVal,setSortVal] = useState('')
+  const [sortVal,setSortVal] = useState(null)
   return (
     <HomeContainer>
       <Sort numOfProducts={numOfProducts} sortValue={setSortVal}/>

@@ -25,7 +25,6 @@ const OptionsMenu = () => {
   }
 
   const handleChange = (event) => {
-    console.log(event.target.value);
     categoryDispatch({
       type:'SET_CATEGORY',category:event.target.value
     })
