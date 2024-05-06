@@ -4,6 +4,9 @@ import { api } from "../../services/api";
 import ProductsListItem from "./ProductsListItem";
 import { CategoryContext } from "../../context/CategoryContext";
 import { priceHighToLowFunction, priceLowToHighFunction, ratingHighToLowFunction, ratingLowToHighFunction } from "../../utility/sortFunctions";
+import Loading from '../states/Loading'
+import Error from '../states/Error'
+
 
 const ProductList = ({
   handleNmOfProducts,
@@ -14,9 +17,12 @@ const ProductList = ({
   const [products, setProducts] = useState([]);
   const [searchParam, setSearchParam] = useState([]);
   const { categoryState } = useContext(CategoryContext);
+  const [loading,setLoading] = useState(false);
+  const [errorMsg,setErrorMsg] = useState(null);
 
   async function fetchProducts(URL) {
     try {
+      setLoading(true)
       let apiUrl = URL;
       if (categoryState.category !== "") {
         apiUrl += `/category/${categoryState.category}`;
@@ -28,9 +34,11 @@ const ProductList = ({
       if (result && result.products && result.products.length > 0) {
         setProducts(result.products);
         setProductItems(result.products);
+        setLoading(false);
       }
     } catch (e) {
-      console.log(e);
+      setLoading(false)
+      setErrorMsg(e.message);
     }
   }
 
@@ -68,6 +76,10 @@ const ProductList = ({
         break;
     }
   },[sortVal,products])
+
+  if(loading) return <Loading/>
+  if(errorMsg !== null) return <Error msg={errorMsg}/>
+
   return (
     <ProductsContainer>
       <ProductsListContainer>

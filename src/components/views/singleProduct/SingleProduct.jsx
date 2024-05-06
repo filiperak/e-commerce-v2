@@ -10,27 +10,36 @@ import {
 import ImageSlider from "../../imageSlider/ImageSlider";
 import StarRatings from "react-star-ratings";
 import ProductNav from "../../products/ProductNav";
+import Loading from "../../states/Loading";
+import Error from "../../states/Error";
 
 const SingleProduct = () => {
   const { productId } = useParams();
   const [singleProduct, setSingleProduct] = useState([]);
   const [cartCount, setCartCount] = useState(0);
+  const [loading,setLoading] = useState(false);
+  const [errorMsg,setErrorMsg] = useState(null);
 
   async function fetchSingleProduct() {
     try {
+      setLoading(true)
       const response = await fetch(`${api}/${productId}`);
       const result = await response.json();
       if (result) {
         setSingleProduct(result);
-        console.log(singleProduct);
+        setLoading(false)
       }
     } catch (e) {
-      console.log(e);
+      setErrorMsg(e.message);
+      setLoading(false);
     }
   }
   useState(() => {
     fetchSingleProduct();
   }, []);
+
+  if(loading) return <Loading/>
+  if(errorMsg !== null) return <Error msg={errorMsg}/>
   return (
     <>
       <ProductNav productName={singleProduct.title}/>
