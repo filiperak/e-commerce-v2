@@ -18,7 +18,8 @@ const ProductList = ({
   const [searchParam, setSearchParam] = useState([]);
   const { categoryState } = useContext(CategoryContext);
   const [loading,setLoading] = useState(false);
-  const [errorMsg,setErrorMsg] = useState(null);
+  const [errorMsg,setErrorMsg] = useState(null);  
+  const [defaultSort,setDefaultSort] = useState([]);
 
   async function fetchProducts(URL) {
     try {
@@ -34,6 +35,7 @@ const ProductList = ({
       if (result && result.products && result.products.length > 0) {
         setProducts(result.products);
         setProductItems(result.products);
+        setDefaultSort(result.products);
         setLoading(false);
       }
     } catch (e) {
@@ -56,27 +58,28 @@ const ProductList = ({
   }, [searchInput]);
 
   useEffect(() => {
-    switch (sortVal) {
-      case 'PRICE_LOW_TO_HIGH':
-        setProducts(priceLowToHighFunction(products))
-        break
-      case 'PRICE_HIGH_TO_LOW':
-        setProducts(priceHighToLowFunction(products))
-        break
-      case 'RATING_LOW_TO_HIGH':
-        setProducts(ratingLowToHighFunction(products))
-        break
-      case 'RATING_HIGH_TO_LOW':
-        setProducts(ratingHighToLowFunction(products))
-        break
-      case 'FEATURED':
-        setProducts(products)
-        break
-      default:
-        break;
+    const sortProducts = () => {
+      switch (sortVal) {
+        case 'PRICE_LOW_TO_HIGH':
+          return priceLowToHighFunction([...products]);
+        case 'PRICE_HIGH_TO_LOW':
+          return priceHighToLowFunction([...products]);
+        case 'RATING_LOW_TO_HIGH':
+          return ratingLowToHighFunction([...products]);
+        case 'RATING_HIGH_TO_LOW':
+          return ratingHighToLowFunction([...products]);
+        default:
+          return [...defaultSort];
+      }
+    };
+  
+    if (products.length > 0 && sortVal) {
+      const sortedProducts = sortProducts();
+      setProducts(sortedProducts);
     }
-  },[sortVal,products])
-
+  }, [sortVal, products]);
+  
+  
   if(loading) return <Loading/>
   if(errorMsg !== null) return <Error msg={errorMsg}/>
 

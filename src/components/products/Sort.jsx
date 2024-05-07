@@ -1,19 +1,17 @@
 import React, { useState } from "react";
 import { SortBar, SortSelect } from "./styled";
 
-const Sort = ({ numOfProducts , sortValue}) => {
-  const [selectedSort,setSelectedSort] = useState('');
+const Sort = ({ numOfProducts , setSortVal,sortVal}) => {
   const handleChange = (e) => {
     e.preventDefault();
-    setSelectedSort(e.target.value)
-    sortValue(selectedSort)
+    setSortVal(e.target.value)
   }
   return (
     <SortBar>
       <p>{`${numOfProducts} out of 100 products`}</p>
       <SortSelect>
         <p>Sort by:</p>
-        <select name="selectSort" value={selectedSort} onChange={handleChange}>
+        <select name="selectSort" value={sortVal} onChange={handleChange}>
           <option selected hidden>
             Featured
           </option>
