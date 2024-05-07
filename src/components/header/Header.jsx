@@ -10,7 +10,6 @@ import OptionsMenu from "../optionsMenu/OptinosMenu";
 const Header = ({ handleInput, productItems }) => {
   const navigate = useNavigate();
   const [filterdProducts, setFilterdProducts] = useState([]);
-  const [searchParam, setSearchParam] = useState([]);
   const [inputVal, setInputVal] = useState("");
   const [isFocused, setIsFocused] = useState(false);
 
@@ -21,10 +20,12 @@ const Header = ({ handleInput, productItems }) => {
   }, [inputVal]);
 
   const filterProductsFunction = () => {
-    const query = inputVal.toLowerCase();
-    setSearchParam(query);
-    const filterdData = productItems.filter(
-      (elem) => elem.title.toLowerCase().indexOf(query) > -1
+    const query = inputVal.trim().toLowerCase();
+    const filterdData = productItems.filter((elem) => (  
+      elem.title.toLowerCase().indexOf(query) > -1
+      || elem.category.toLowerCase().indexOf(query) > -1
+      || elem.brand.toLowerCase().indexOf(query) > -1
+      )
     );
     setFilterdProducts(filterdData);
   };

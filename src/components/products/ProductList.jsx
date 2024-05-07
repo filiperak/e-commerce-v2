@@ -68,8 +68,10 @@ const ProductList = ({
           return ratingLowToHighFunction([...products]);
         case 'RATING_HIGH_TO_LOW':
           return ratingHighToLowFunction([...products]);
-        default:
+        case 'FEATURED':
           return [...defaultSort];
+        default:
+          break;
       }
     };
   
@@ -77,7 +79,7 @@ const ProductList = ({
       const sortedProducts = sortProducts();
       setProducts(sortedProducts);
     }
-  }, [sortVal, products]);
+  }, [sortVal]);
   
   
   if(loading) return <Loading/>
