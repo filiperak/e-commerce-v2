@@ -1,10 +1,20 @@
-import React from 'react'
-import { CartContainer } from './styled'
+import React, { useContext } from 'react'
+import { CartContainer ,ShoppingCart,OrderSummary, CartHeader} from './styled'
+import { CartContext } from '../../../context/CartContext'
 
 const Cart = () => {
+  const {cartState,cartDispatch} = useContext(CartContext)
   return (
     <CartContainer>
-        cart
+        <ShoppingCart>
+          <CartHeader>
+          <h2>Shopping Cart</h2>
+          <span>{`${cartState.length} Items`}</span>
+          </CartHeader>
+        </ShoppingCart>
+        <OrderSummary>
+          <h3>Order Summary</h3>
+        </OrderSummary>
     </CartContainer>
   )
 }

@@ -85,6 +85,7 @@ export const AddToCart = styled.div`
     text-align: center;
     margin-left: 2%;
     border-radius: 2px;
+    cursor: pointer;
   }
   button:active{
     padding: 7px;

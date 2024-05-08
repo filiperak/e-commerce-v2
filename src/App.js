@@ -6,6 +6,7 @@ import Cart from "./components/views/cart/Cart";
 import { CategoryContextProvider } from "./context/CategoryContext";
 import { useState } from "react";
 import SingleProduct from "./components/views/singleProduct/SingleProduct";
+import CartContextProvider from "./context/CartContext";
 
 function App() {
   const [searchInput, setSearchInput] = useState([]);
@@ -13,22 +14,24 @@ function App() {
   return (
     <div className="App">
       <Router>
-        <CategoryContextProvider>
-          <Header handleInput={setSearchInput} productItems={productItems} />
-          <Routes>
-            <Route path="/cart" element={<Cart />} />
-            <Route
-              path="/"
-              element={
-                <Home
-                  searchInput={searchInput}
-                  setProductItems={setProductItems}
-                />
-              }
-            />
-            <Route path="/product/:productId" element={<SingleProduct/>}/>
-          </Routes>
-        </CategoryContextProvider>
+        <CartContextProvider>
+          <CategoryContextProvider>
+            <Header handleInput={setSearchInput} productItems={productItems} />
+            <Routes>
+              <Route path="/cart" element={<Cart />} />
+              <Route
+                path="/"
+                element={
+                  <Home
+                    searchInput={searchInput}
+                    setProductItems={setProductItems}
+                  />
+                }
+              />
+              <Route path="/product/:productId" element={<SingleProduct />} />
+            </Routes>
+          </CategoryContextProvider>
+        </CartContextProvider>
       </Router>
     </div>
   );

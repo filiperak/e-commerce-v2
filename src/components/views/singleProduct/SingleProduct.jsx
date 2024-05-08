@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useContext, useState } from "react";
 import { useParams } from "react-router-dom";
 import { api } from "../../../services/api";
 import {
@@ -12,13 +12,15 @@ import StarRatings from "react-star-ratings";
 import ProductNav from "../../products/ProductNav";
 import Loading from "../../states/Loading";
 import Error from "../../states/Error";
+import { CartContext } from "../../../context/CartContext";
 
 const SingleProduct = () => {
   const { productId } = useParams();
   const [singleProduct, setSingleProduct] = useState([]);
-  const [cartCount, setCartCount] = useState(0);
+  const [cartCount, setCartCount] = useState(1);
   const [loading,setLoading] = useState(false);
   const [errorMsg,setErrorMsg] = useState(null);
+  const {cartDispatch} = useContext(CartContext)
 
   async function fetchSingleProduct() {
     try {
@@ -37,6 +39,18 @@ const SingleProduct = () => {
   useState(() => {
     fetchSingleProduct();
   }, []);
+  const handleAdd = () => {
+    cartDispatch({
+      type:'ADD_TO_CART',
+      payload : {
+        id:singleProduct.id,
+        quantity:cartCount,
+        title:singleProduct.title,
+        price:singleProduct.price,
+        img:singleProduct.thumbnail
+      }
+    })
+  }
 
   if(loading) return <Loading/>
   if(errorMsg !== null) return <Error msg={errorMsg}/>
@@ -67,7 +81,7 @@ const SingleProduct = () => {
           <AddToCart>
             <span
               onClick={() =>
-                cartCount !== 0 ? setCartCount(cartCount - 1) : null
+                cartCount !== 1 ? setCartCount(cartCount - 1) : null
               }
             >
               -
@@ -75,7 +89,8 @@ const SingleProduct = () => {
             <span>{cartCount}</span>
             <span onClick={() => setCartCount(cartCount + 1)}>+</span>
 
-            <button>Add to cart</button>
+            <button
+            onClick={handleAdd}>Add to cart</button>
           </AddToCart>
         </SingleProductData>
       </SingleProductContainer>

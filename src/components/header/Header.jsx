@@ -1,4 +1,4 @@
-import React, { useEffect, useRef, useState } from "react";
+import React, { useContext, useEffect, useRef, useState } from "react";
 import { ReactComponent as Arrow } from "../../assets/arrow.svg";
 import { HeaderContainer, HeaderRigth, Recommended, SearchBar } from "./styled";
 import ShoppingCartIcon from "@mui/icons-material/ShoppingCart";
@@ -6,12 +6,14 @@ import SearchIcon from "@mui/icons-material/Search";
 import PersonOutlineIcon from "@mui/icons-material/PersonOutline";
 import { useNavigate } from "react-router-dom";
 import OptionsMenu from "../optionsMenu/OptinosMenu";
+import { CartContext } from "../../context/CartContext";
 
 const Header = ({ handleInput, productItems }) => {
   const navigate = useNavigate();
   const [filterdProducts, setFilterdProducts] = useState([]);
   const [inputVal, setInputVal] = useState("");
   const [isFocused, setIsFocused] = useState(false);
+  const {cartState} = useContext(CartContext);
 
   //handleInput(inputVal);    OBRATI PAZNJU STA SE OVDE DESILO
 
@@ -77,7 +79,7 @@ const Header = ({ handleInput, productItems }) => {
       <HeaderRigth>
         <PersonOutlineIcon />
         <ShoppingCartIcon onClick={() => navigate("/cart")} />
-        <span>0</span>
+        <span>{cartState && cartState.length}</span>
       </HeaderRigth>
     </HeaderContainer>
   );
