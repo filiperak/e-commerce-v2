@@ -123,3 +123,15 @@ export const NavLinks = styled.nav`
     margin: 0 3px;
   }
 `;
+export const NoResultsContainer = styled.div`
+margin-top: 100px;
+height: 100%;
+width: 100vw;
+text-align: center;
+opacity: 40%;
+  >svg{
+    height: 20%;
+    width: 20%;
+    color: #000;
+  }
+`;

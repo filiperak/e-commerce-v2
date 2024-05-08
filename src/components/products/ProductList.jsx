@@ -6,6 +6,7 @@ import { CategoryContext } from "../../context/CategoryContext";
 import { priceHighToLowFunction, priceLowToHighFunction, ratingHighToLowFunction, ratingLowToHighFunction } from "../../utility/sortFunctions";
 import Loading from '../states/Loading'
 import Error from '../states/Error'
+import NoResults from "./NoResults";
 
 
 const ProductList = ({
@@ -88,14 +89,15 @@ const ProductList = ({
   return (
     <ProductsContainer>
       <ProductsListContainer>
-        {products.map((elem) => (
-          <ProductsListItem key={elem.id} data={elem} />
-        ))}
+        {products && products.length > 0?
+        products.map(elem => (
+          <ProductsListItem key={elem.id} data={elem}/>
+        )):<NoResults/>
+      }
       </ProductsListContainer>
     </ProductsContainer>
   );
 };
 
 export default ProductList;
-
 
