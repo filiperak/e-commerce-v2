@@ -111,25 +111,25 @@ export const ProductNavbar = styled.nav`
   margin-top: var(--main-component-margin);
   height: 23.6px;
   align-items: center;
-  >.MuiSvgIcon-root{
+  > .MuiSvgIcon-root {
     cursor: pointer;
   }
 `;
 export const NavLinks = styled.nav`
   color: #777;
   font-size: 0.8rem;
-  >span{
+  > span {
     cursor: pointer;
     margin: 0 3px;
   }
 `;
 export const NoResultsContainer = styled.div`
-margin-top: 100px;
-height: 100%;
-width: 100vw;
-text-align: center;
-opacity: 40%;
-  >svg{
+  margin-top: 100px;
+  height: 100%;
+  width: 100vw;
+  text-align: center;
+  opacity: 40%;
+  > svg {
     height: 20%;
     width: 20%;
     color: #000;
