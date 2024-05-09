@@ -20,7 +20,7 @@ const SingleProduct = () => {
   const [cartCount, setCartCount] = useState(1);
   const [loading,setLoading] = useState(false);
   const [errorMsg,setErrorMsg] = useState(null);
-  const {cartDispatch} = useContext(CartContext)
+  const {cartDispatch,cartState} = useContext(CartContext)
 
   async function fetchSingleProduct() {
     try {
@@ -39,18 +39,30 @@ const SingleProduct = () => {
   useState(() => {
     fetchSingleProduct();
   }, []);
+
   const handleAdd = () => {
-    cartDispatch({
-      type:'ADD_TO_CART',
-      payload : {
-        id:singleProduct.id,
-        quantity:cartCount,
-        title:singleProduct.title,
-        price:singleProduct.price,
-        img:singleProduct.thumbnail,
-        brand:singleProduct.brand
+    let productAdded = false;
+    for(let i = 0; i < cartState.length; i++){
+      if(cartState[i].id == singleProduct.id){
+        productAdded = true;
+        break;
       }
-    })
+    }
+    if(productAdded){
+      cartDispatch({type:'ADD_QUANTITY',id:singleProduct.id})
+    }else{
+        cartDispatch({
+          type:'ADD_TO_CART',
+          payload : {
+            id:singleProduct.id,
+            quantity:cartCount,
+            title:singleProduct.title,
+            price:singleProduct.price,
+            img:singleProduct.thumbnail,
+            brand:singleProduct.brand
+          }
+        })
+    }
   }
 
   if(loading) return <Loading/>
