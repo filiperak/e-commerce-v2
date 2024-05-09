@@ -8,6 +8,8 @@ import {
   CartItemHeader,
   GoBack,
   ListWrapper,
+  OrderSummaryHeader,
+  HeaderDelBtn,
 } from "./styled";
 import { CartContext } from "../../../context/CartContext";
 import CartListItem from "./CartListItem";
@@ -15,8 +17,12 @@ import CartForm from "./CartForm";
 import KeyboardBackspaceIcon from "@mui/icons-material/KeyboardBackspace";
 import { useNavigate } from "react-router-dom";
 import ProductNav from "../../products/ProductNav";
+import DeleteOutlineIcon from '@mui/icons-material/DeleteOutline';
 const Cart = () => {
   const { cartState, cartDispatch } = useContext(CartContext);
+  const handleClick = () => {
+    cartDispatch({type:'EMPTY_CART'})
+  }
   return (
     <>
       <ProductNav />
@@ -27,7 +33,7 @@ const Cart = () => {
             <span>
               {cartState.length !== 0
                 ? `${cartState.length} Items`
-                : "Empty cart"}
+                : 'Cart is empty'}
             </span>
           </CartHeader>
           <ListWrapper>
@@ -45,7 +51,13 @@ const Cart = () => {
           </ListWrapper>
         </ShoppingCart>
         <OrderSummary>
+          <OrderSummaryHeader>
           <h3>Order Summary</h3>
+          <HeaderDelBtn onClick={handleClick}>
+            <DeleteOutlineIcon/>
+            <p>Empty cart</p>
+          </HeaderDelBtn>
+          </OrderSummaryHeader>
           <CartForm />
         </OrderSummary>
       </CartContainer>

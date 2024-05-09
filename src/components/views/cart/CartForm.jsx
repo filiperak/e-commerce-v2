@@ -15,6 +15,7 @@ import {
   PaymentMethodsContainer,
   MethodInput,
   CardContainer,
+  OrderBtn,
 } from "./styled";
 import LocalMallOutlinedIcon from "@mui/icons-material/LocalMallOutlined";
 import KeyboardArrowUpOutlinedIcon from "@mui/icons-material/KeyboardArrowUpOutlined";
@@ -36,10 +37,14 @@ const CartForm = () => {
       setShowMore(showMore.filter((id) => id !== currentId));
     }
   };
-  const handleChange = (e) => setPaymentMethod(e.target.value)
+  const handleChange = (e) => setPaymentMethod(e.target.value);
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    cartDispatch({type:'EMPTY_CART'})
+  }
 
   return (
-    <FormContainer>
+    <FormContainer onSubmit={handleSubmit}>
       <AccordianContainer>
         <AccordianHead onClick={() => handleShow(1)}>
           <LeftContainer>
@@ -105,9 +110,9 @@ const CartForm = () => {
               type="radio"
               name="Payment-method"
               id="card"
-              value='card'
+              value="card"
               onClick={handleChange}
-              checked={paymentMethod === 'card'}
+              checked={paymentMethod === "card"}
             />
             Credit Card
           </label>
@@ -119,20 +124,22 @@ const CartForm = () => {
               type="radio"
               name="Payment-method"
               id="cash"
-              value='cash'
+              value="cash"
               onClick={handleChange}
-              checked={paymentMethod === 'cash'}
+              checked={paymentMethod === "cash"}
             />
             Cash
           </label>
           <LocalAtmIcon />
         </MethodInput>
-        {paymentMethod === 'card' && 
-        <CardContainer>
-            <CreditCardForm/>
-        </CardContainer>
-        }
+        {paymentMethod === "card" && <CreditCardForm />}
       </PaymentMethodsContainer>
+      <OrderBtn>
+        <label htmlFor="checkbox">
+          <input type="checkbox" name="" id="checkbox" />Subscribe to our newsleter
+        </label>
+        <input type="submit" value="Complete order" />
+      </OrderBtn>
     </FormContainer>
   );
 };

@@ -9,6 +9,7 @@ export const CartContainer = styled.div`
   gap: 10px;
   @media (max-width: 600px) {
     flex-direction: column;
+    padding: 0 4px;
   }
 `;
 export const GoBack = styled.div`
@@ -28,6 +29,27 @@ export const OrderSummary = styled.div`
     flex: 1;
   } */
 `;
+export const OrderSummaryHeader = styled.div`
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  >h3{
+    margin-bottom: 0;
+  }
+`;
+export const HeaderDelBtn = styled.div`
+display: flex;
+  margin-bottom: 0;
+  align-items: end;
+  cursor: pointer;
+  >p{
+    margin-bottom: 0;
+  }
+  &:hover{
+    color: red;
+  }
+`;
+
 export const ListWrapper = styled.div`
   box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1), 0 1px 3px rgba(0, 0, 0, 0.08);
   border-radius: 4px;
@@ -46,6 +68,7 @@ export const CartItemHeader = styled.div`
   justify-content: space-between;
   > h5 {
     flex: 0.5;
+    margin: 8px 0;
   }
   > h6 {
     flex: 0.2;
@@ -241,6 +264,27 @@ padding: 4px;
   cursor: pointer;
 }
 `;
-export const CardContainer = styled.div`
+export const OrderBtn = styled.p`
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  label{
+    font-weight: 500;
+    color: gray;
+    font-size: 0.8rem;
+  }
+  :nth-child(2){
+   border-radius: 3px;
+   border: 1px solid var(---main-gray);
+   background-color: var(--main-orange);
+   color: #fff;
+   padding: 5px;
+   font-weight: 500;
+   cursor: pointer;
 
+   &:active{
+    transform: scale(0.8);
+    box-shadow:  0 0 5px black;
+   }
+  }
 `;
