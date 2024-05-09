@@ -9,15 +9,23 @@ export const cartReducer = (state,action) => {
                     title: action.payload.title,
                     price: action.payload.price,
                     img: action.payload.img,
+                    brand: action.payload.brand,
                 }
             ];
         case 'ADD_QUANTITY':
-            return []
+            return state.map(elem => (
+                elem.id === action.id ?
+                {...elem, quantity: elem.quantity+1}
+                :elem
+            ))
         case 'REMOVE_QUANTITY':
-            return []
-
+            return state.map(elem => (
+                elem.id === action.id && elem.quantity > 1?
+                {...elem, quantity: elem.quantity-1}
+                :elem
+            ))
         case 'REMOVE_FROM_CART':
-            return state.fillter(product => product.id !== action.id);
+            return state.filter(product => product.id !== action.id);
         case 'EMPTY_CART':
             return [];
         default:

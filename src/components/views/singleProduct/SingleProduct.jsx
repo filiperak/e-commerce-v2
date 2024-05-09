@@ -47,7 +47,8 @@ const SingleProduct = () => {
         quantity:cartCount,
         title:singleProduct.title,
         price:singleProduct.price,
-        img:singleProduct.thumbnail
+        img:singleProduct.thumbnail,
+        brand:singleProduct.brand
       }
     })
   }
