@@ -1,7 +1,7 @@
 import styled from "styled-components";
 
 export const CartContainer = styled.div`
-  margin-top: var(--main-component-margin);
+  /* margin-top: var(--main-component-margin); */
   display: flex;
   max-width: 1100px;
   margin-left: auto;
@@ -28,6 +28,12 @@ export const OrderSummary = styled.div`
     flex: 1;
   } */
 `;
+export const ListWrapper = styled.div`
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1), 0 1px 3px rgba(0, 0, 0, 0.08);
+  border-radius: 4px;
+  padding: 4px;
+`;
+
 export const CartHeader = styled.div`
   display: flex;
   align-items: center;
@@ -78,7 +84,7 @@ export const ItemImg = styled.div`
 export const ItemInfo = styled.div`
   flex: 0.3;
   padding: 0 5px;
-  >p{
+  > p {
     margin: 0;
   }
   > button {
@@ -139,16 +145,15 @@ export const ItemTotal = styled.div`
 `;
 
 export const FormContainer = styled.form`
-  >h6{
+  > h6 {
     font-size: 0.8rem;
     color: gray;
     margin: 0;
     padding: 0%;
     font-weight: 400;
-}
+  }
 `;
 export const AccordianContainer = styled.div`
-  padding: 0 5px 5px 5px;
   box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1), 0 1px 3px rgba(0, 0, 0, 0.08);
   border-radius: 4px;
 `;
@@ -157,6 +162,7 @@ export const AccordianHead = styled.p`
   align-items: center;
   justify-content: space-between;
   cursor: pointer;
+  padding: 0 5px 5px 5px;
 `;
 export const LeftContainer = styled.div`
   display: flex;
@@ -176,6 +182,7 @@ export const SummaryListItem = styled.li`
   align-items: center;
   justify-content: space-between;
   padding: 0;
+  padding-right: 5px;
   margin: 0;
 `;
 export const SummaryListItemImg = styled.div`
@@ -200,7 +207,7 @@ export const SummaryListItemImg = styled.div`
   }
 `;
 export const ShippingInfo = styled.div`
-  >input{
+  > input {
     display: block;
     width: 90%;
     border: 1px solid var(--main-gray);
@@ -208,14 +215,32 @@ export const ShippingInfo = styled.div`
     margin: 3px auto;
     padding: 3px;
   }
-  >input:focus{
+  > input:focus {
     outline: none;
   }
-  >p{
+  > p {
     font-size: 0.9rem;
     font-weight: 550;
   }
-  &:last-child{
+  &:last-child {
     margin-bottom: 5px;
   }
+`;
+export const PaymentMethodsContainer = styled.div`
+border-radius: 4px;
+margin-top: 16px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1), 0 1px 3px rgba(0, 0, 0, 0.08);
+`;
+export const MethodInput = styled.div`
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+border-bottom: 1px solid var(--main-gray);
+padding: 4px;
+>label,>input{
+  cursor: pointer;
+}
+`;
+export const CardContainer = styled.div`
+
 `;

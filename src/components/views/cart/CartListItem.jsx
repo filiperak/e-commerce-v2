@@ -6,21 +6,21 @@ import {
   ItemQuantity,
   ItemTotal,
   ItemImg,
-  ItemQuantityContainer
+  ItemQuantityContainer,
 } from "./styled";
 import { CartContext } from "../../../context/CartContext";
 
 const CartListItem = ({ productInfo }) => {
-    const {cartDispatch} = useContext(CartContext)
-    const handleRemove = () => {
-        cartDispatch({type:'REMOVE_FROM_CART',id:productInfo.id})
-    }
-    const addQuantity = () => {
-        cartDispatch({type:'ADD_QUANTITY', id:productInfo.id})
-    }
-    const removeQuantity = () => {
-        cartDispatch({type:'REMOVE_QUANTITY', id:productInfo.id})
-    }
+  const { cartDispatch } = useContext(CartContext);
+  const handleRemove = () => {
+    cartDispatch({ type: "REMOVE_FROM_CART", id: productInfo.id });
+  };
+  const addQuantity = () => {
+    cartDispatch({ type: "ADD_QUANTITY", id: productInfo.id });
+  };
+  const removeQuantity = () => {
+    cartDispatch({ type: "REMOVE_QUANTITY", id: productInfo.id });
+  };
   return (
     <CartItemContainer>
       <ItemImg>
@@ -33,9 +33,9 @@ const CartListItem = ({ productInfo }) => {
       </ItemInfo>
       <ItemQuantity>
         <ItemQuantityContainer>
-        <p onClick={removeQuantity}>-</p>
-        <p>{productInfo.quantity}</p>
-        <p onClick={addQuantity}>+</p>
+          <p onClick={removeQuantity}>-</p>
+          <p>{productInfo.quantity}</p>
+          <p onClick={addQuantity}>+</p>
         </ItemQuantityContainer>
       </ItemQuantity>
       <ItemPrice>{`$${productInfo.price}`}</ItemPrice>

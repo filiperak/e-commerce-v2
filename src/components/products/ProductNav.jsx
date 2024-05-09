@@ -10,10 +10,10 @@ const ProductNav = ({ productName }) => {
     <ProductNavbar>
       <KeyboardBackspaceIcon onClick={() => navigate(-1)} />
       <NavLinks>
-        <span onClick={() => navigate("/")}>Home/</span>
-        <span>Products/</span>
+        <span onClick={() => navigate("/")}>{'Home >'}</span>
+        <span>{'Products >'}</span>
         {categoryState.category.length ? (
-          <span>{`${categoryState.category}/`}</span>
+          <span>{`${categoryState.category}>`}</span>
         ) : null}
         <span>{productName}</span>
       </NavLinks>

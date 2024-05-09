@@ -10,26 +10,34 @@ import {
   AccordianContainer,
   SummaryListItem,
   SummaryListItemImg,
-  ShippingInfo
+  ShippingInfo,
+  PaymentHead,
+  PaymentMethodsContainer,
+  MethodInput,
+  CardContainer,
 } from "./styled";
 import LocalMallOutlinedIcon from "@mui/icons-material/LocalMallOutlined";
 import KeyboardArrowUpOutlinedIcon from "@mui/icons-material/KeyboardArrowUpOutlined";
 import KeyboardArrowDownOutlinedIcon from "@mui/icons-material/KeyboardArrowDownOutlined";
-import SettingsAccessibilityOutlinedIcon from '@mui/icons-material/SettingsAccessibilityOutlined';
+import SettingsAccessibilityOutlinedIcon from "@mui/icons-material/SettingsAccessibilityOutlined";
+import CreditCardOutlinedIcon from "@mui/icons-material/CreditCardOutlined";
+import LocalAtmIcon from "@mui/icons-material/LocalAtm";
+import CreditCardForm from "../../../assets/CreditCardForm";
 const CartForm = () => {
   const { cartState, cartDispatch } = useContext(CartContext);
   const [showMore, setShowMore] = useState([]);
+  const [paymentMethod, setPaymentMethod] = useState("card");
 
   const handleShow = (currentId) => {
-    let copyShowMore = [...showMore]
-    const findIndex = copyShowMore.indexOf(currentId)
-    if(findIndex === -1){
-        copyShowMore.push(currentId)
-    }else{
-        copyShowMore.splice(findIndex,1)
+    const index = showMore.indexOf(currentId);
+    if (index === -1) {
+      setShowMore([...showMore, currentId]);
+    } else {
+      setShowMore(showMore.filter((id) => id !== currentId));
     }
-    setShowMore(copyShowMore)
-  }
+  };
+  const handleChange = (e) => setPaymentMethod(e.target.value)
+
   return (
     <FormContainer>
       <AccordianContainer>
@@ -37,15 +45,15 @@ const CartForm = () => {
           <LeftContainer>
             <LocalMallOutlinedIcon />
             <p>Show order summary</p>
-              {showMore ? (
-                <KeyboardArrowUpOutlinedIcon />
-              ) : (
-                <KeyboardArrowDownOutlinedIcon />
-              )}
+            {showMore.includes(1) ? (
+              <KeyboardArrowUpOutlinedIcon />
+            ) : (
+              <KeyboardArrowDownOutlinedIcon />
+            )}
           </LeftContainer>
-          <p> {`Total: $${totalSumFunc(cartState)}`}</p>
+          <p>{`Total: $${totalSumFunc(cartState)}`}</p>
         </AccordianHead>
-        {showMore === 1 && (
+        {showMore.includes(1) && (
           <SummaryList>
             {cartState.map((elem) => (
               <SummaryListItem key={elem.id}>
@@ -63,26 +71,68 @@ const CartForm = () => {
       <h3>Customer information</h3>
       <h6>Please enter user information and shipping address.</h6>
       <AccordianContainer>
-        <AccordianHead  onClick={() => handleShow(2)}>
-            <LeftContainer>
-                <SettingsAccessibilityOutlinedIcon/>
-                <p>Enter customer and shipping info</p>
-            </LeftContainer>
-              {showMore ? (
-                <KeyboardArrowUpOutlinedIcon />
-              ) : (
-                <KeyboardArrowDownOutlinedIcon />
-              )}
+        <AccordianHead onClick={() => handleShow(2)}>
+          <LeftContainer>
+            <SettingsAccessibilityOutlinedIcon />
+            <p>Enter customer and shipping info</p>
+          </LeftContainer>
+          {showMore.includes(2) ? (
+            <KeyboardArrowUpOutlinedIcon />
+          ) : (
+            <KeyboardArrowDownOutlinedIcon />
+          )}
         </AccordianHead>
-        {showMore === 2 && <ShippingInfo>
+        {showMore.includes(2) && (
+          <ShippingInfo>
             <p>Customer info</p>
             <input type="text" placeholder="Full Name" />
-            <input type="email" placeholder="Email"/>
+            <input type="email" placeholder="Email" />
             <p>Shipping details</p>
             <input type="text" placeholder="City" />
-            <input type="text" placeholder="Addresse" />
-            </ShippingInfo>}
+            <input type="text" placeholder="Address" />
+          </ShippingInfo>
+        )}
       </AccordianContainer>
+      <h3>Payment method</h3>
+      <h6>
+        All transactions are secure and encripted. Credit cart information is
+        never stored.
+      </h6>
+      <PaymentMethodsContainer>
+        <MethodInput>
+          <label htmlFor="card">
+            <input
+              type="radio"
+              name="Payment-method"
+              id="card"
+              value='card'
+              onClick={handleChange}
+              checked={paymentMethod === 'card'}
+            />
+            Credit Card
+          </label>
+          <CreditCardOutlinedIcon />
+        </MethodInput>
+        <MethodInput>
+          <label htmlFor="cash">
+            <input
+              type="radio"
+              name="Payment-method"
+              id="cash"
+              value='cash'
+              onClick={handleChange}
+              checked={paymentMethod === 'cash'}
+            />
+            Cash
+          </label>
+          <LocalAtmIcon />
+        </MethodInput>
+        {paymentMethod === 'card' && 
+        <CardContainer>
+            <CreditCardForm/>
+        </CardContainer>
+        }
+      </PaymentMethodsContainer>
     </FormContainer>
   );
 };

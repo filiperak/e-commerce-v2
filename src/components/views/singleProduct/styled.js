@@ -4,6 +4,7 @@ export const SingleProductContainer = styled.div`
   /* margin-top: var(--main-component-margin); */
   display: flex;
   max-width: 1100px;
+  margin-top: 10px;
   margin-left: auto;
   margin-right: auto;
   height: 70vh;

@@ -1,43 +1,56 @@
-import React, { useContext } from 'react'
-import { CartContainer ,ShoppingCart,OrderSummary, CartHeader,CartList, CartItemHeader, GoBack} from './styled'
-import { CartContext } from '../../../context/CartContext'
-import CartListItem from './CartListItem'
-import CartForm from './CartForm'
+import React, { useContext } from "react";
+import {
+  CartContainer,
+  ShoppingCart,
+  OrderSummary,
+  CartHeader,
+  CartList,
+  CartItemHeader,
+  GoBack,
+  ListWrapper,
+} from "./styled";
+import { CartContext } from "../../../context/CartContext";
+import CartListItem from "./CartListItem";
+import CartForm from "./CartForm";
 import KeyboardBackspaceIcon from "@mui/icons-material/KeyboardBackspace";
-import { useNavigate } from 'react-router-dom'
-
+import { useNavigate } from "react-router-dom";
+import ProductNav from "../../products/ProductNav";
 const Cart = () => {
-  const {cartState,cartDispatch} = useContext(CartContext)
-  const navigate = useNavigate()
+  const { cartState, cartDispatch } = useContext(CartContext);
   return (
-    <CartContainer>
+    <>
+      <ProductNav />
+      <CartContainer>
         <ShoppingCart>
-          <GoBack onClick={() => navigate(-1)}>
-            <KeyboardBackspaceIcon/>
-            <p>Go Back</p>
-          </GoBack>
           <CartHeader>
-          <h2>Shopping Cart</h2>
-          <span>{`${cartState.length} Items`}</span>
+            <h3>Shopping Cart</h3>
+            <span>
+              {cartState.length !== 0
+                ? `${cartState.length} Items`
+                : "Empty cart"}
+            </span>
           </CartHeader>
-          <CartItemHeader>
-            <h5>Product Details</h5>
-            <h6>quantity</h6>
-            <h6 className='price-total'>price</h6>
-            <h6 className='price-total'>total</h6>
-          </CartItemHeader>
-          <CartList>
-            {cartState.map(elem =>(
-              <CartListItem productInfo={elem}/>
-            ))}
-          </CartList>
+          <ListWrapper>
+            <CartItemHeader>
+              <h5>Product Details</h5>
+              <h6>quantity</h6>
+              <h6 className="price-total">price</h6>
+              <h6 className="price-total">total</h6>
+            </CartItemHeader>
+            <CartList>
+              {cartState.map((elem) => (
+                <CartListItem productInfo={elem} />
+              ))}
+            </CartList>
+          </ListWrapper>
         </ShoppingCart>
         <OrderSummary>
           <h3>Order Summary</h3>
-          <CartForm/>
+          <CartForm />
         </OrderSummary>
-    </CartContainer>
-  )
-}
+      </CartContainer>
+    </>
+  );
+};
 
-export default Cart
+export default Cart;
