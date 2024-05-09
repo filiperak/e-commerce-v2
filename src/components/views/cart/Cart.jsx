@@ -2,6 +2,7 @@ import React, { useContext } from 'react'
 import { CartContainer ,ShoppingCart,OrderSummary, CartHeader,CartList, CartItemHeader} from './styled'
 import { CartContext } from '../../../context/CartContext'
 import CartListItem from './CartListItem'
+import CartForm from './CartForm'
 const Cart = () => {
   const {cartState,cartDispatch} = useContext(CartContext)
   return (
@@ -25,6 +26,7 @@ const Cart = () => {
         </ShoppingCart>
         <OrderSummary>
           <h3>Order Summary</h3>
+          <CartForm/>
         </OrderSummary>
     </CartContainer>
   )

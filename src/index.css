@@ -2,7 +2,9 @@
 
 
 body {
+  /* --main-gray:#e2ebf5; */
   --main-gray:#dedede;
+  /* --main-orange:#261785; */
   --main-orange:#ffa500;
   --main-component-margin:60px;
   max-width: 100vw;

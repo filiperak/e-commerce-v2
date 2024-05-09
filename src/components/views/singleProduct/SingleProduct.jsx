@@ -43,7 +43,7 @@ const SingleProduct = () => {
   const handleAdd = () => {
     let productAdded = false;
     for(let i = 0; i < cartState.length; i++){
-      if(cartState[i].id == singleProduct.id){
+      if(cartState[i].id === singleProduct.id){
         productAdded = true;
         break;
       }
