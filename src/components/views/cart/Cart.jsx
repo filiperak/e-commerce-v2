@@ -14,8 +14,8 @@ const Cart = () => {
           <CartItemHeader>
             <h5>Product Details</h5>
             <h6>quantity</h6>
-            <h6>price</h6>
-            <h6>total</h6>
+            <h6 className='price-total'>price</h6>
+            <h6 className='price-total'>total</h6>
           </CartItemHeader>
           <CartList>
             {cartState.map(elem =>(
