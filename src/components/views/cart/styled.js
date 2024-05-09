@@ -85,7 +85,6 @@ export const CartList = styled.ul`
 export const CartItemContainer = styled.li`
   display: flex;
   justify-content: space-around;
-  /* align-items: center; */
   width: 100%;
   list-style: none;
   border-bottom: 1px solid var(--main-gray);
