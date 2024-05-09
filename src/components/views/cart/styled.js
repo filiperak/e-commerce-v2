@@ -11,6 +11,11 @@ export const CartContainer = styled.div`
     flex-direction: column;
   }
 `;
+export const GoBack = styled.div`
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+`;
 export const ShoppingCart = styled.div`
   flex: 0.6;
   /* @media(max-width:600px){
@@ -40,7 +45,7 @@ export const CartItemHeader = styled.div`
     flex: 0.2;
     text-align: center;
   }
-  >.price-total{
+  > .price-total {
     flex: 0.15;
   }
 `;
@@ -51,13 +56,12 @@ export const CartList = styled.ul`
 export const CartItemContainer = styled.li`
   display: flex;
   justify-content: space-around;
-  align-items: center;
+  /* align-items: center; */
   width: 100%;
   list-style: none;
   border-bottom: 1px solid var(--main-gray);
   padding: 2px;
-  /* margin-bottom: 3px; */
-  height: 20vh;
+  height: 10vh;
 `;
 
 export const ItemImg = styled.div`
@@ -74,6 +78,9 @@ export const ItemImg = styled.div`
 export const ItemInfo = styled.div`
   flex: 0.3;
   padding: 0 5px;
+  >p{
+    margin: 0;
+  }
   > button {
     background-color: #fff;
     font-weight: 700;
@@ -85,7 +92,7 @@ export const ItemInfo = styled.div`
       color: #fff;
     }
   }
-  :nth-child(2){
+  :nth-child(2) {
     color: #888;
     font-size: 0.8rem;
     font-weight: 600;
@@ -94,29 +101,28 @@ export const ItemInfo = styled.div`
 export const ItemQuantity = styled.div`
   flex: 0.2;
   text-align: center;
-  
 `;
 export const ItemQuantityContainer = styled.div`
-justify-content: center;
-border: 1px solid var(--main-gray);
-border-radius: 4px;
-overflow: hidden;
+  justify-content: center;
+  border: 1px solid var(--main-gray);
+  border-radius: 4px;
+  overflow: hidden;
   display: flex;
-  p{
+  p {
     font-weight: 800;
     padding: 4px;
     display: block;
     height: 20px;
     margin: 0;
   }
-  :nth-child(2){
-    flex:0.6;
+  :nth-child(2) {
+    flex: 0.6;
   }
-  :nth-child(odd){
+  :nth-child(odd) {
     cursor: pointer;
     background-color: var(--main-gray);
     flex: 0.2;
-    &:active{
+    &:active {
       background-color: var(--main-orange);
       transition: ease-in-out 0.1s;
     }
@@ -132,25 +138,28 @@ export const ItemTotal = styled.div`
   text-align: center;
 `;
 
-
-
-
 export const FormContainer = styled.form`
-
+  >h6{
+    font-size: 0.8rem;
+    color: gray;
+    margin: 0;
+    padding: 0%;
+    font-weight: 400;
+}
 `;
-export const SummaryContainer = styled.div`
-    padding: 0 5px;
+export const AccordianContainer = styled.div`
+  padding: 0 5px 5px 5px;
   box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1), 0 1px 3px rgba(0, 0, 0, 0.08);
   border-radius: 4px;
 `;
-export const FormTotal = styled.p`
+export const AccordianHead = styled.p`
   display: flex;
   align-items: center;
   justify-content: space-between;
-
+  cursor: pointer;
 `;
 export const LeftContainer = styled.div`
-    display: flex;
+  display: flex;
   align-items: center;
   justify-content: space-between;
   gap: 5px;
@@ -160,7 +169,7 @@ export const MoreArrowDiv = styled.div`
 `;
 
 export const SummaryList = styled.ul`
-  transition: ease-in-out .5s;
+  transition: ease-in-out 0.5s;
 `;
 export const SummaryListItem = styled.li`
   display: flex;
@@ -168,18 +177,17 @@ export const SummaryListItem = styled.li`
   justify-content: space-between;
   padding: 0;
   margin: 0;
-
 `;
 export const SummaryListItemImg = styled.div`
-    position: relative;
+  position: relative;
 
-  img{
+  img {
     height: 35px;
     width: 35px;
     object-fit: cover;
     position: relative;
   }
-  >p{
+  > p {
     position: absolute;
     min-width: 19px;
     text-align: center;
@@ -188,8 +196,26 @@ export const SummaryListItemImg = styled.div`
     bottom: 0;
     right: 0;
     z-index: 100;
-    transform: translate(50%,-50%);
+    transform: translate(50%, -50%);
   }
 `;
-
-
+export const ShippingInfo = styled.div`
+  >input{
+    display: block;
+    width: 90%;
+    border: 1px solid var(--main-gray);
+    border-radius: 4px;
+    margin: 3px auto;
+    padding: 3px;
+  }
+  >input:focus{
+    outline: none;
+  }
+  >p{
+    font-size: 0.9rem;
+    font-weight: 550;
+  }
+  &:last-child{
+    margin-bottom: 5px;
+  }
+`;

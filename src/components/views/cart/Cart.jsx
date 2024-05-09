@@ -1,13 +1,21 @@
 import React, { useContext } from 'react'
-import { CartContainer ,ShoppingCart,OrderSummary, CartHeader,CartList, CartItemHeader} from './styled'
+import { CartContainer ,ShoppingCart,OrderSummary, CartHeader,CartList, CartItemHeader, GoBack} from './styled'
 import { CartContext } from '../../../context/CartContext'
 import CartListItem from './CartListItem'
 import CartForm from './CartForm'
+import KeyboardBackspaceIcon from "@mui/icons-material/KeyboardBackspace";
+import { useNavigate } from 'react-router-dom'
+
 const Cart = () => {
   const {cartState,cartDispatch} = useContext(CartContext)
+  const navigate = useNavigate()
   return (
     <CartContainer>
         <ShoppingCart>
+          <GoBack onClick={() => navigate(-1)}>
+            <KeyboardBackspaceIcon/>
+            <p>Go Back</p>
+          </GoBack>
           <CartHeader>
           <h2>Shopping Cart</h2>
           <span>{`${cartState.length} Items`}</span>
