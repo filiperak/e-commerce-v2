@@ -38,10 +38,10 @@ const Admin = () => {
       if (response.ok) {
         setProducts(products.filter((product) => product.id !== elemId));
       } else {
-        console.error("Failed to delete product:", result.error); // Log error message if deletion fails
+        console.error( result.error); 
       }
     } catch (error) {
-      console.error("Error deleting product:", error);
+      console.error( error);
     }
   }
   
