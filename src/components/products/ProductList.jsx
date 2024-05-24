@@ -29,7 +29,7 @@ const ProductList = ({
       if (categoryState.category !== "") {
         apiUrl += `/category/${categoryState.category}`;
       } else {
-        apiUrl += `?limit=100`;
+        apiUrl += `?limit=194`;
       }
       const response = await fetch(apiUrl);
       const result = await response.json();

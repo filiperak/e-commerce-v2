@@ -14,7 +14,7 @@ const OptionsMenu = () => {
   }, []);
   async function fetchOptions(url) {
     try {
-      const response = await fetch(`${url}/categories`);
+      const response = await fetch(`${url}/category-list`);
       const result = await response.json();
       if (result && result.length > 0) {
         setOptions(result);

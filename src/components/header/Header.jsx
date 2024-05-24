@@ -25,8 +25,8 @@ const Header = ({ handleInput, productItems }) => {
     const query = inputVal.trim().toLowerCase();
     const filterdData = productItems.filter((elem) => (  
       elem.title.toLowerCase().indexOf(query) > -1
-      || elem.category.toLowerCase().indexOf(query) > -1
-      || elem.brand.toLowerCase().indexOf(query) > -1
+       || elem.category.toLowerCase().indexOf(query) > -1
+       || elem.brand && elem.brand.toLowerCase().indexOf(query) > -1
       )
     );
     setFilterdProducts(filterdData);
