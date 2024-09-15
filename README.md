@@ -23,5 +23,5 @@ This is a React-based e-commerce application built with state management using `
 - 
 
 ## Live Demo
-Check out the live demo hosted on Netlify: [ecommerce app](https://main.d2y875dhy8kck7.amplifyapp.com/)
-link: https://main.d2y875dhy8kck7.amplifyapp.com/
+Check out the live demo hosted on Netlify: [ecommerce app](https://aecommerceapp.netlify.app/)
+link: https://aecommerceapp.netlify.app/
